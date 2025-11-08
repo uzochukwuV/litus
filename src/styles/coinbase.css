@@ -1,0 +1,328 @@
+/* Coinbase-inspired Design System */
+
+:root {
+  /* Coinbase Colors */
+  --cb-blue: #0052FF;
+  --cb-blue-hover: #0045DB;
+  --cb-blue-light: #EBF0FF;
+  --cb-success: #05B169;
+  --cb-success-light: #E6F7F0;
+  --cb-warning: #F5A623;
+  --cb-warning-light: #FFF5E6;
+  --cb-error: #E03838;
+  --cb-error-light: #FFE6E6;
+  --cb-gray-900: #0A0B0D;
+  --cb-gray-800: #1A1D1F;
+  --cb-gray-700: #2E3338;
+  --cb-gray-600: #5B636E;
+  --cb-gray-500: #8A919E;
+  --cb-gray-400: #B9C0CA;
+  --cb-gray-300: #D8DDE4;
+  --cb-gray-200: #EBEEF2;
+  --cb-gray-100: #F5F7F8;
+  --cb-white: #FFFFFF;
+
+  /* Spacing */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 48px;
+  --spacing-3xl: 64px;
+
+  /* Border Radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-pill: 100px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(10, 11, 13, 0.05);
+  --shadow-md: 0 4px 8px rgba(10, 11, 13, 0.08);
+  --shadow-lg: 0 8px 24px rgba(10, 11, 13, 0.12);
+  --shadow-xl: 0 16px 48px rgba(10, 11, 13, 0.16);
+}
+
+/* Coin
+
+base Card */
+.cb-card {
+  background: var(--cb-white);
+  border: 1px solid var(--cb-gray-200);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s ease;
+}
+
+.cb-card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--cb-gray-300);
+}
+
+/* Coinbase Button */
+.cb-btn {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  padding: 12px 24px;
+  border-radius: var(--radius-md);
+  border: none;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+}
+
+.cb-btn-primary {
+  background: var(--cb-blue);
+  color: var(--cb-white);
+}
+
+.cb-btn-primary:hover:not(:disabled) {
+  background: var(--cb-blue-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.cb-btn-secondary {
+  background: var(--cb-gray-100);
+  color: var(--cb-gray-900);
+}
+
+.cb-btn-secondary:hover:not(:disabled) {
+  background: var(--cb-gray-200);
+}
+
+.cb-btn-success {
+  background: var(--cb-success);
+  color: var(--cb-white);
+}
+
+.cb-btn-success:hover:not(:disabled) {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.cb-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Coinbase Input */
+.cb-input {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 16px;
+  padding: 14px 16px;
+  border: 1px solid var(--cb-gray-300);
+  border-radius: var(--radius-md);
+  background: var(--cb-white);
+  color: var(--cb-gray-900);
+  width: 100%;
+  transition: all 0.15s ease;
+}
+
+.cb-input:focus {
+  outline: none;
+  border-color: var(--cb-blue);
+  box-shadow: 0 0 0 3px var(--cb-blue-light);
+}
+
+.cb-input::placeholder {
+  color: var(--cb-gray-500);
+}
+
+/* Coinbase Label */
+.cb-label {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--cb-gray-700);
+  margin-bottom: var(--spacing-sm);
+  display: block;
+}
+
+/* Coinbase Badge */
+.cb-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.cb-badge-success {
+  background: var(--cb-success-light);
+  color: var(--cb-success);
+}
+
+.cb-badge-warning {
+  background: var(--cb-warning-light);
+  color: var(--cb-warning);
+}
+
+.cb-badge-error {
+  background: var(--cb-error-light);
+  color: var(--cb-error);
+}
+
+.cb-badge-info {
+  background: var(--cb-blue-light);
+  color: var(--cb-blue);
+}
+
+/* Container */
+.cb-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--spacing-2xl) var(--spacing-lg);
+}
+
+/* Grid */
+.cb-grid {
+  display: grid;
+  gap: var(--spacing-lg);
+}
+
+.cb-grid-2 {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+/* Table */
+.cb-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.cb-table thead {
+  background: var(--cb-gray-100);
+}
+
+.cb-table th {
+  padding: var(--spacing-md);
+  text-align: left;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--cb-gray-700);
+  border-bottom: 2px solid var(--cb-gray-200);
+}
+
+.cb-table td {
+  padding: var(--spacing-md);
+  border-bottom: 1px solid var(--cb-gray-200);
+  color: var(--cb-gray-900);
+}
+
+.cb-table tbody tr:hover {
+  background: var(--cb-gray-50);
+}
+
+/* Header */
+.cb-page-header {
+  margin-bottom: var(--spacing-2xl);
+}
+
+.cb-page-title {
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--cb-gray-900);
+  margin: 0 0 var(--spacing-sm);
+}
+
+.cb-page-subtitle {
+  font-size: 18px;
+  color: var(--cb-gray-600);
+  margin: 0;
+}
+
+/* Form Group */
+.cb-form-group {
+  margin-bottom: var(--spacing-lg);
+}
+
+/* Select */
+.cb-select {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 16px;
+  padding: 14px 16px;
+  border: 1px solid var(--cb-gray-300);
+  border-radius: var(--radius-md);
+  background: var(--cb-white);
+  color: var(--cb-gray-900);
+  width: 100%;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.cb-select:focus {
+  outline: none;
+  border-color: var(--cb-blue);
+  box-shadow: 0 0 0 3px var(--cb-blue-light);
+}
+
+/* Stat Card */
+.cb-stat-card {
+  background: linear-gradient(135deg, var(--cb-blue) 0%, #0045DB 100%);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-xl);
+  color: var(--cb-white);
+  box-shadow: var(--shadow-lg);
+}
+
+.cb-stat-label {
+  font-size: 14px;
+  opacity: 0.9;
+  margin-bottom: var(--spacing-sm);
+}
+
+.cb-stat-value {
+  font-size: 32px;
+  font-weight: 700;
+}
+
+/* Loading Spinner */
+.cb-spinner {
+  border: 3px solid var(--cb-gray-200);
+  border-top-color: var(--cb-blue);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Alert */
+.cb-alert {
+  padding: var(--spacing-md);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--spacing-lg);
+}
+
+.cb-alert-success {
+  background: var(--cb-success-light);
+  border-left: 4px solid var(--cb-success);
+  color: var(--cb-success);
+}
+
+.cb-alert-error {
+  background: var(--cb-error-light);
+  border-left: 4px solid var(--cb-error);
+  color: var(--cb-error);
+}
+
+.cb-alert-info {
+  background: var(--cb-blue-light);
+  border-left: 4px solid var(--cb-blue);
+  color: var(--cb-blue);
+}
