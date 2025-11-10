@@ -11,7 +11,7 @@ default = true # Optional. Whether to use this account as the `--source` for com
 [development.contracts]
 fungible_allowlist_example = { client = true, constructor_args = "--admin me --manager me --initial_supply 1000000000000000000000000" }
 nft_enumerable_example = { client = true, constructor_args = "--owner me" }
-limit_order = { client = true, constructor_args = "--admin GBASEG66SOECYUGOMNYUXZANKMJGFN6FJDRU47HCNL5UZJP72CE4M2S4 --router CCMAPXWVZD4USEKDWRYS7DA4Y3D7E2SDMGBFJUCEXTC7VN6CUBGWPFUS --oracle CAVLP5DH2GJPZMVO7IJY4CVOD5MWEFTJFVPD2YY2FQXOQHRGHK4D6HLP"  }
+limit_order = { client = true, constructor_args = "--admin me --router CCMAPXWVZD4USEKDWRYS7DA4Y3D7E2SDMGBFJUCEXTC7VN6CUBGWPFUS --oracle CAVLP5DH2GJPZMVO7IJY4CVOD5MWEFTJFVPD2YY2FQXOQHRGHK4D6HLP" }
 
 # Rather than in one list, TOML allows specifying contracts in their own "sections"
 [development.contracts.guess_the_number]

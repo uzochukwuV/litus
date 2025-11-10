@@ -7,12 +7,14 @@ The frontend for the intent-based limit order dApp has been created with Coinbas
 ## Pages Created
 
 ### 1. Home Page ([src/pages/Home.tsx](src/pages/Home.tsx))
+
 - Landing page with overview of the limit order system
 - Call-to-action buttons to create intents or view existing intents
 - Feature cards explaining the system
 - How it works section
 
 ### 2. Create Intent Page ([src/pages/CreateIntent.tsx](src/pages/CreateIntent.tsx))
+
 - Form to create new limit order intents
 - Fields:
   - Sell Token (XLM, USDC, AQUA)
@@ -26,6 +28,7 @@ The frontend for the intent-based limit order dApp has been created with Coinbas
 - Validation and error handling
 
 ### 3. View Intents Page ([src/pages/ViewIntents.tsx](src/pages/ViewIntents.tsx))
+
 - Grid display of all limit order intents
 - Filters:
   - By status (All, Active, Executed, Cancelled, Expired)
@@ -46,6 +49,7 @@ The frontend for the intent-based limit order dApp has been created with Coinbas
 ### Coinbase-Style Design System ([src/styles/coinbase.css](src/styles/coinbase.css))
 
 Complete CSS design system with:
+
 - Color palette (blue, success, warning, error, gray scale)
 - Spacing system (xs to 3xl)
 - Border radius utilities
@@ -65,6 +69,7 @@ Complete CSS design system with:
 ### Contract Integration ([src/contracts/limit_order.ts](src/contracts/limit_order.ts))
 
 Helper file containing:
+
 - Contract client setup
 - TypeScript interfaces for Intent, Balance
 - IntentStatus enum
@@ -82,18 +87,41 @@ The following routes have been added to [App.tsx](src/App.tsx):
 - `/debug` - Debugger (existing)
 
 Navigation buttons added to header:
+
 - Create (Plus icon)
 - Intents (List icon)
 - Debugger (Code icon)
 
 ## Setup Instructions
 
-### 1. Deploy the Contract
+### 1. Generate TypeScript Bindings (Development)
 
-First, deploy the limit order contract to testnet:
+For local development, the `stellar scaffold` tool will automatically build and deploy contracts:
+
+```bash
+npm run dev
+```
+
+This command:
+
+- Builds the limit-order contract to WASM
+- Deploys it to local Stellar network
+- Generates TypeScript bindings in `packages/limit_order/`
+- Starts the frontend dev server
+
+The contract will be automatically available for import:
+
+```typescript
+import * as LimitOrder from "limit_order";
+```
+
+### 2. Deploy to Testnet (Optional)
+
+For testnet deployment, use the deployment script:
 
 ```bash
 cd contracts/limit-order
+chmod +x deploy.sh
 ./deploy.sh
 ```
 
@@ -123,6 +151,7 @@ npm run dev
 ### 5. Fund Your Account
 
 If needed, fund your account from Friendbot:
+
 ```bash
 curl "https://friendbot.stellar.org?addr=YOUR_ADDRESS"
 ```
@@ -130,6 +159,7 @@ curl "https://friendbot.stellar.org?addr=YOUR_ADDRESS"
 ## Current Status
 
 ### ✅ Completed
+
 - Coinbase-style design system
 - Home landing page
 - Create Intent page with form validation
@@ -211,6 +241,7 @@ const handleSubmit = async (e: React.FormEvent) => {
 ## Dependencies
 
 All required dependencies are already in the project:
+
 - React Router for navigation
 - Stellar Design System for base components
 - Stellar SDK for contract interaction
