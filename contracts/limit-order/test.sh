@@ -34,7 +34,7 @@ echo ""
 
 # Create test user
 echo "👥 Creating test user..."
-if ! stellar keys list | grep -q "test-user"; then
+if ! stellar keys ls | grep -q "test-user"; then
     stellar keys generate test-user --network testnet
 fi
 USER=$(stellar keys address test-user)

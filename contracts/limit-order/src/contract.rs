@@ -217,7 +217,7 @@ impl LimitOrderContract {
 
         // Update creator's balance (unlock the locked funds)
         let mut creator_balance = storage::get_balance(&e, &intent.creator, &intent.sell_token);
-        creator_balance.locked -= (intent.sell_amount + intent.incentive);
+        creator_balance.locked -= intent.sell_amount + intent.incentive;
         storage::set_balance(&e, &intent.creator, &intent.sell_token, &creator_balance);
 
         // Update intent status
@@ -425,5 +425,68 @@ impl LimitOrderContract {
         storage::set_intent(&e, intent_id, &intent);
 
         Ok(())
+    }
+
+    /// Query all assets supported by the configured Reflector Oracle
+    /// This helps users know which tokens have price feeds available
+    /// @returns: Vector of supported assets
+    pub fn get_oracle_supported_assets(e: Env) -> Result<soroban_sdk::Vec<crate::oracle::Asset>, Error> {
+        let oracle = storage::get_oracle(&e).ok_or(Error::Unauthorized)?;
+        let reflector = crate::oracle::ReflectorClient::new(&e, &oracle);
+        Ok(reflector.assets())
+    }
+
+    /// Get the current price for a specific token from the oracle
+    /// @param token: Token contract address
+    /// @returns: Latest price data (price and timestamp)
+    pub fn get_token_price(
+        e: Env,
+        token: Address,
+    ) -> Result<Option<crate::oracle::PriceData>, Error> {
+        let oracle = storage::get_oracle(&e).ok_or(Error::Unauthorized)?;
+        let reflector = crate::oracle::ReflectorClient::new(&e, &oracle);
+        let asset = crate::oracle::stellar_asset(token);
+        Ok(reflector.lastprice(&asset))
+    }
+
+    /// Get the oracle decimals (precision)
+    /// This is the number of decimal places used for price representation
+    /// @returns: Number of decimals (typically 7 or 14)
+    pub fn get_oracle_decimals(e: Env) -> Result<u32, Error> {
+        let oracle = storage::get_oracle(&e).ok_or(Error::Unauthorized)?;
+        let reflector = crate::oracle::ReflectorClient::new(&e, &oracle);
+        Ok(reflector.decimals())
+    }
+
+    /// Get cross-rate between two tokens directly from the oracle
+    /// This is useful for checking if a token pair has a price feed
+    /// @param sell_token: First token address
+    /// @param buy_token: Second token address
+    /// @returns: Cross-rate price data if available
+    pub fn get_token_cross_rate(
+        e: Env,
+        sell_token: Address,
+        buy_token: Address,
+    ) -> Result<Option<crate::oracle::PriceData>, Error> {
+        let oracle = storage::get_oracle(&e).ok_or(Error::Unauthorized)?;
+        let sell_asset = crate::oracle::stellar_asset(sell_token);
+        let buy_asset = crate::oracle::stellar_asset(buy_token);
+        Ok(crate::oracle::get_cross_rate(&e, &oracle, &sell_asset, &buy_asset))
+    }
+
+    /// Get TWAP (Time-Weighted Average Price) for a token
+    /// Provides more stable pricing over time
+    /// @param token: Token contract address
+    /// @param records: Number of historical records to average (e.g., 5)
+    /// @returns: TWAP price if available
+    pub fn get_token_twap(
+        e: Env,
+        token: Address,
+        records: u32,
+    ) -> Result<Option<i128>, Error> {
+        let oracle = storage::get_oracle(&e).ok_or(Error::Unauthorized)?;
+        let reflector = crate::oracle::ReflectorClient::new(&e, &oracle);
+        let asset = crate::oracle::stellar_asset(token);
+        Ok(reflector.twap(&asset, &records))
     }
 }
