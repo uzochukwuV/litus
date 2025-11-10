@@ -446,7 +446,7 @@ impl LimitOrderContract {
         let oracle = storage::get_oracle(&e).ok_or(Error::Unauthorized)?;
         let reflector = crate::oracle::ReflectorClient::new(&e, &oracle);
         let asset = crate::oracle::stellar_asset(token);
-        Ok(reflector.lastprice(&asset))
+        Ok(reflector.lastprice(&aset))
     }
 
     /// Get the oracle decimals (precision)

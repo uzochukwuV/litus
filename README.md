@@ -55,7 +55,7 @@ Have a look at `environments.toml` for more fined-grained control.
 npm run dev
 ```
 
-Open the server URL in your web browser. 
+Open the server URL in your web browser.
 
 4. For testnet/mainnet deployment:
 
@@ -109,3 +109,8 @@ my-project/                      # Your initialized project
 ```
 
 This template provides a ready-to-use frontend application with example smart contracts and their TypeScript clients. You can use these as reference while building your own contracts and UI. The frontend is set up with Vite, React, and includes basic components for interacting with the contracts.
+
+stellar contract bindings typescript --output-dir packages/limit_order --wasm target/stellar/local/limit_order.wasm
+ℹ️ Loading contract spec from file...
+✅ Generated!
+ℹ️ Run "npm install && npm run build" in "contracts/limit_order" to build the JavaScript NPM package.
