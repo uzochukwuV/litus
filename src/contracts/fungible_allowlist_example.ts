@@ -1,4 +1,4 @@
-import * as Client from "fungible_allowlist_example";
+import * as Client from "../../packages/fungible_allowlist_example/dist/index";
 import { rpcUrl } from "./util";
 
 export default new Client.Client({

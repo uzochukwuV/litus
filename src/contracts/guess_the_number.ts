@@ -1,4 +1,4 @@
-import * as Client from "guess_the_number";
+import * as Client from "../../packages/guess_the_number/dist/index";
 import { rpcUrl } from "./util";
 
 export default new Client.Client({

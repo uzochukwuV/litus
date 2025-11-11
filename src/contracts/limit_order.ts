@@ -1,4 +1,13 @@
 import { rpcUrl, networkPassphrase } from "./util";
+import * as Client from "../../packages/limit_order/dist/index";
+
+export default new Client.Client({
+  networkPassphrase,
+  contractId: process.env.PUBLIC_LIMIT_ORDER_CONTRACT_ID || "",
+  rpcUrl,
+  allowHttp: true,
+  publicKey: undefined,
+});
 
 // Contract ID - will be populated after deployment
 // Update this with your deployed contract ID from contract-id.txt

@@ -1,4 +1,4 @@
-import * as Client from "nft_enumerable_example";
+import * as Client from "../../packages/nft_enumerable_example/dist/index";
 import { rpcUrl } from "./util";
 
 export default new Client.Client({
